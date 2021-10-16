@@ -103,20 +103,7 @@ export class TreemapContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.form.data.rectangles.push(new TreemapItemModel(null, null));
-
-    this.form.data.inputType = 'Json';
-    this.form.data.jsonString = '[{"name":"Banana","value":6},{"name":"Fig","value":8},{"name":"Cherry","value":4},{"name":"Dragon Fruit","value":3},{"name":"Apple","value":1},{"name":"Elderberry","value":2}]';
-
-    // this.form.data.treemapItems.push(new TreemapItemModel('Banana', 6));
-    // this.form.data.treemapItems.push(new TreemapItemModel('Fig', 8));
-    // this.form.data.treemapItems.push(new TreemapItemModel('Cherry', 4));
-    // this.form.data.treemapItems.push(new TreemapItemModel('Dragon Fruit', 3));
-    // this.form.data.treemapItems.push(new TreemapItemModel('Apple', 1));
-    // this.form.data.treemapItems.push(new TreemapItemModel('Elderberry', 2));
-    this.form.data.rowCount = 3;
-
-    this.onChangeJsonString();
-    this.onSubmit();
+    this.form.data.inputType = 'Table';
+    this.form.data.treemapItems.push(new TreemapItemModel(null, null));
   }
 }
