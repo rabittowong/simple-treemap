@@ -1,0 +1,27 @@
+@import 'src/assets/scss/variables';
+@import 'src/assets/scss/mixin';
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: $dark-black-900;
+  margin: 0;
+  background-color: $white-100;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  @include screen-md-under {
+    padding: 0 15px;
+  }
+}
+
+.required::after {
+  content: '*';
+  color: $red-600;
+  margin-left: 1px;
+}

@@ -1,0 +1,65 @@
+<div id="treemap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-12 mb-3">
+        <div class="title mb-3">Parameter</div>
+
+        <div class="treemap-form">
+          <div class="form-group mb-3">
+            <label for="input-type" class="form-label">Input Type</label>
+            <select class="form-select" [ngClass]="{'is-invalid': !!form.ui.error.get('inputType')}" id="input-type" [(ngModel)]="form.data.inputType" (ngModelChange)="form.ui.error.delete('inputType')">
+              <option value="null" selected disabled>--Select--</option>
+              <option *ngFor="let inputType of form.option.inputTypes" value="{{inputType}}">{{inputType}}</option>
+            </select>
+            <div class="invalid-feedback">{{form.ui.error.get('inputType')}}</div>
+          </div>
+
+          <div *ngIf="form.data.inputType == 'Json'" class="form-group mb-3">
+            <label for="json-string" class="form-label">Json</label>
+            <textarea class="form-control is-invalid" [ngClass]="{'is-invalid': !!form.ui.error.get('jsonString')}" id="json-string" [(ngModel)]="form.data.jsonString" (ngModelChange)="form.ui.error.delete('jsonString'); onChangeJsonString();"></textarea>
+            <div class="invalid-feedback">{{form.ui.error.get('jsonString')}}</div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="item-name-title" class="form-label">Items</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="item-name-title" value="Name" disabled>
+              <input type="text" class="form-control" id="item-value-title" value="Value" disabled>
+              <div *ngIf="form.data.inputType == 'Table'" class="input-group-text treemap-item-btn" (click)="onAddTreemapItem()"><div class="fa fa-plus"></div></div>
+            </div>
+
+            <div *ngFor="let treemapItem of form.data.treemapItems; let i = index;" class="input-group treemap-item">
+              <input type="text" class="form-control" [ngClass]="{'is-invalid': form.ui.submitted && !treemapItem.name}" id="item-name-{{i}}" [(ngModel)]="treemapItem.name" [disabled]="form.data.inputType != 'Table'">
+              <input type="number" class="form-control" [ngClass]="{'is-invalid': form.ui.submitted && !treemapItem.value}" id="item-value-{{i}}" [(ngModel)]="treemapItem.value" min="0" [disabled]="form.data.inputType != 'Table'">
+              <div *ngIf="form.data.inputType == 'Table'" class="input-group-text treemap-item-btn" (click)="onRemoveTreemapItem(i)"><div class="fa fa-minus"></div></div>
+            </div>
+            <div *ngIf="!!form.ui.error.get('treemapItems')" class="invalid">{{form.ui.error.get('treemapItems')}}</div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="row-count" class="form-label">Number of rows</label>
+            <input type="number" class="form-control" [ngClass]="{'is-invalid': !!form.ui.error.get('rowCount')}" id="row-count" [(ngModel)]="form.data.rowCount" (ngModelChange)="form.ui.error.delete('rowCount')">
+            <div class="invalid-feedback">{{form.ui.error.get('rowCount')}}</div>
+          </div>
+
+          <div class="btn-container">
+            <button type="submit" class="btn btn-secondary" (click)="onSubmit()">Generate</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <div class="title mb-3">Result</div>
+
+        <div class="canvas">
+          <div *ngFor="let row of form.data.canvas" class="canvas-row">
+            <div *ngFor="let rectangle of row" class="rectangle" [style]="{'width': rectangle.weight * 100 + '%'}">
+              <div class="rectangle-name">{{rectangle.name}}</div>
+              <div class="rectangle-value">{{rectangle.value}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

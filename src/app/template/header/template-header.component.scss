@@ -1,0 +1,21 @@
+@import 'src/assets/scss/variables';
+@import 'src/assets/scss/mixin';
+
+#header {
+  height: 60px;
+  background: $white-100;
+  color: $dark-black-900;
+  box-shadow: 2px 2px 4px $dark-white-200;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+
+  @include screen-md-under {
+    margin-bottom: 15px;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
