@@ -3,10 +3,10 @@
 This project was written by Rabitto Wong. It was generated with [Angular CLI](https://github.com/angular/angular-cli)
 version 12.1.3.
 
-## Requirement
+## Objective
 
-In this task, you are required to create a website that accepts user input and generates simple treemap. The height of
-all items in the treemap are assumed to be same. The user can input items by Json string or table format.
+This website accepts user input and generates simple treemap. The height of all items in the treemap are assumed to be
+same. The user can input items by Json string or table format.
 
 ## Development server
 
